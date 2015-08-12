@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 var releaseSchema = new mongoose.Schema({
   albumName: String,
   artistName: String,
+  rating: String,
   isVA: String,
   recordLabel: String,
   year: String,

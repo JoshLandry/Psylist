@@ -44,7 +44,8 @@ app.post('/releases', function(req,res) {
 
   console.log("this is a post");
 
-  var newRelease = new Release(req.body);
+  // var newRelease = new Release(req.body);
+  var newRelease = newReleaseObject;
   newRelease.save(function(err, data) {
     if (err) return res.status(500).send({'msg': 'could not save yr shit.'});
     res.json(data);
@@ -65,6 +66,4 @@ app.delete('/releases/:id', function(req, res) {
   Release.remove({_id: req.params.id}, true);
   res.end();
 });
-
-//
 
