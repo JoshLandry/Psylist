@@ -20,8 +20,10 @@
   },
   "homepage": "https://github.com/JoshLandry/Psylist",
   "dependencies": {
+    "body-parser": "^1.13.3",
     "consolidate": "^0.13.1",
     "express": "^4.13.3",
+    "mongoose": "^4.1.2",
     "mustache": "^2.1.3"
   }
 }
