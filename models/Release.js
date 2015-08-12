@@ -8,6 +8,7 @@ var releaseSchema = new mongoose.Schema({
   isVA: String,
   recordLabel: String,
   year: String,
+  genre: String,
   review: String
 });
 
