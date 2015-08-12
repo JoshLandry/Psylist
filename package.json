@@ -1,0 +1,27 @@
+{
+  "name": "Psylist",
+  "version": "1.0.0",
+  "description": "A database of the psy I've listened to",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JoshLandry/Psylist.git"
+  },
+  "keywords": [
+    "jquery"
+  ],
+  "author": "Joshua Landry",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoshLandry/Psylist/issues"
+  },
+  "homepage": "https://github.com/JoshLandry/Psylist",
+  "dependencies": {
+    "consolidate": "^0.13.1",
+    "express": "^4.13.3",
+    "mustache": "^2.1.3"
+  }
+}
