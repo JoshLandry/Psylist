@@ -26,12 +26,28 @@
 	</head>
 	<body data-ng-app="psylistApp">
   <main data-ng-controller="releasesController" data-ng-init="getAll()">
+    
     <p>{{testText}}</p>
-    <section class="mongodbPsyList">
+
       <ul data-ng-repeat="release in releases">
-        <li>{{release._id}} - [{{release.year}}] {{release.albumName}}</li>
+        <li>
+          Album title: {{release.albumName}}
+        </li>
+        <li>
+          Artist name: {{release.artistName}}
+        </li>
+
+        <form data-ng-if="release.editing">
+            <label for="release{{release._id}}"></label>
+            Rename it thus: <input type="text" id="release{{release._id}}" data-ng-model="release.albumName"> <br>
+            Resay him thus: <input type="text" id="release{{release._id}}" data-ng-model="release.artistName"> 
+            <button type="submit" data-ng-click="save(release)">Save info</button>
+            <button type="button" data-ng-click="editToggle(release)">Cancel</button>
+        </form>
+        <button data-ng-click="editToggle(release)" data-ng-if="!release.editing">Edit info</button>
+        <button data-ng-click="remove(release)">Delete release</button> <br>
       </ul>
-    </section>
+
     <form class="input form">
       <label for="newRelease"></label>
       Album Name: <input data-ng-model="newRelease.albumName"></input> Artist: <input data-ng-model="newRelease.artistName"></input> <br>

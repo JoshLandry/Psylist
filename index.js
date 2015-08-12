@@ -52,13 +52,12 @@ app.post('/releases', function(req,res) {
 });
 
 app.put('/releases/:id', function(req, res) {
-      var updatedRelease = req.body;
-      delete updatedGoat._id;
-      Release.update({_id: req.params.id}, updatedRelease, function(err) {
-        if (err) return res.status(500).send({'msg': 'this release has proved resistant to update.'});
-
-        res.json(req.body);
-      });
+  var updatedRelease = req.body;
+  delete updatedRelease._id;
+  Release.update({_id: req.params.id}, updatedRelease, function(err) {
+    if (err) return res.status(500).send({'msg': 'this release has proved resistant to update.'});
+    res.json(req.body);
+  });
 });
 
 app.delete('/releases/:id', function(req, res) {

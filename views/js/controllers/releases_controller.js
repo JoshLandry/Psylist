@@ -33,24 +33,36 @@ module.exports = function(app) {
       })
     };
 
-    // $scope.save = function(goat) {
-    //   $http({
-    //     method: 'PUT',
-    //     url: '/api/v1/goats/' + goat._id,
-    //     data: goat
-    //   })
-    //   .success(function() {
-    //     goat.editing = false;
-    //   })
-    //   .error(function(data) {
-    //     console.log(data);
-    //   })
-    // };
+    $scope.save = function(release) {
+      $http({
+        method: 'PUT',
+        url: '/releases/' + release._id,
+        data: release
+      })
+      .success(function() {
+        release.editing = false;
+      })
+      .error(function(data) {
+        console.log(data);
+      })
+    };
+
+    $scope.editToggle = function(release) {
+      if(release.editing) {
+        release.albumName = release.oldAlbumName;
+        release.artistName = release.oldArtistName;
+        release.editing = false;
+      } else {
+        release.oldAlbumName = release.albumName;
+        release.oldArtistName = release.artistName;
+        release.editing = true;
+      }
+    };
 
     $scope.remove = function(release) {
       $http({
         method: 'DELETE',
-        url: '/releases' + release._id
+        url: '/releases/' + release._id
       })
       .success(function() {
         $scope.releases.splice($scope.releases.indexOf(release), 1);
