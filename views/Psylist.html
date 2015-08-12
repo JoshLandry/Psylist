@@ -24,14 +24,22 @@
   			});
 		</script>
 	</head>
-	<body>
-    <section class="input form">
-      Album Name: <input class="albumName"></input> Artist: <input class="artist"></input> <br>
-      Year: <input class="year"></input> Record Label: <input class="recordLabel"></input> <br>
-      Is it a VA? <input class="VA"></input> Genre: <input class="genre"></input> <br>
-      Rating: <input class="rating"></input> Review: <input class="review"></input> <br>
-      <button class="addRelease">Submit Release</button>
+	<body data-ng-app="psylistApp">
+  <main data-ng-controller="releasesController" data-ng-init="getAll()">
+    <p>{{testText}}</p>
+    <section class="mongodbPsyList">
+      <ul data-ng-repeat="release in releases">
+        <li>{{release._id}} - [{{release.year}}] {{release.albumName}}</li>
+      </ul>
     </section>
+    <form class="input form">
+      <label for="newRelease"></label>
+      Album Name: <input data-ng-model="newRelease.albumName"></input> Artist: <input data-ng-model="newRelease.artistName"></input> <br>
+      Year: <input data-ng-model="newRelease.year"></input> Record Label: <input data-ng-model="newRelease.recordLabel"></input> <br>
+      Is it a VA? <input data-ng-model="newRelease.isVA"></input> Genre: <input data-ng-model="newRelease.genre"></input> <br>
+      Rating: <input data-ng-model="newRelease.rating"></input> Review: <input data-ng-model="newRelease.review"></input> <br>
+      <input type="submit" data-ng-click="create(newRelease)">Submit Release</button>
+    </form>
     <section class="psylist">
 		<h1> Psytrance / Psyelectronik mixables list - (no time to review all these albums) </h1>
 		<p>
@@ -3001,6 +3009,7 @@ DJ Gizmo - The Dopeman EP [12"] [gabber single with obnoxious repeated gimmicky 
 					</div>
 			</div>
     </section>
-    <script src="./js/inputForm.js"></script>
+    <script src="./bundle.js"></script>
+  </main>
 	</body>
 </html>

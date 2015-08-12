@@ -11,11 +11,11 @@ var app = express();
 
 mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost/psylist_development');
 
-app.set('views', __dirname + '/views');
+app.set('build', __dirname + '/build');
 app.engine('html', engines.mustache);
 app.set('view engine', 'html');
 
-app.use(express.static('views'));
+app.use(express.static('build'));
 
 app.listen(process.env.PORT || 5000, function() {
   console.log('Node app is running on port 5000');
@@ -44,8 +44,7 @@ app.post('/releases', function(req,res) {
 
   console.log("this is a post");
 
-  // var newRelease = new Release(req.body);
-  var newRelease = newReleaseObject;
+  var newRelease = new Release(req.body);
   newRelease.save(function(err, data) {
     if (err) return res.status(500).send({'msg': 'could not save yr shit.'});
     res.json(data);
