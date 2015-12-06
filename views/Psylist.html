@@ -27,26 +27,29 @@
 	<body data-ng-app="psylistApp">
   <main data-ng-controller="releasesController" data-ng-init="getAll()">
     
-    <p>{{testText}}</p>
+    <p ng-bind="testText"></p>
 
-      <ul data-ng-repeat="release in releases">
-        <li>
-          Album title: {{release.albumName}}
-        </li>
-        <li>
-          Artist name: {{release.artistName}}
-        </li>
+    Filter By: <input> </input>
 
-        <form data-ng-if="release.editing">
-            <label for="release{{release._id}}"></label>
-            Rename it thus: <input type="text" id="release{{release._id}}" data-ng-model="release.albumName"> <br>
-            Resay him thus: <input type="text" id="release{{release._id}}" data-ng-model="release.artistName"> 
-            <button type="submit" data-ng-click="save(release)">Save info</button>
-            <button type="button" data-ng-click="editToggle(release)">Cancel</button>
-        </form>
-        <button data-ng-click="editToggle(release)" data-ng-if="!release.editing">Edit info</button>
-        <button data-ng-click="remove(release)">Delete release</button> <br>
-      </ul>
+      <table data-ng-repeat="release in releases">
+        <tr>
+          <td ng-bind="release.year"> - </td>
+          <td ng-bind="release.artistName"> </td>
+          <td ng-bind="release.albumName"> </td>
+        </tr>
+
+        <tr>
+          <td> <form data-ng-if="release.editing">
+              <label for="release{{release._id}}"></label>
+              Edit artist name: <input type="text" id="release{{release._id}}" data-ng-model="release.artistName"> <br>
+              Edit title: <input type="text" id="release{{release._id}}" data-ng-model="release.albumName">
+              <button type="submit" data-ng-click="save(release)">Save info</button>
+              <button type="button" data-ng-click="editToggle(release)">Cancel</button>
+          </form> </td>
+          <td> <button data-ng-click="editToggle(release)" data-ng-if="!release.editing">Expand / Edit</button> </td>
+          <td> <button data-ng-click="remove(release)">Delete release</button> </td> <br>
+        </tr>
+      </table>
 
     <form class="input form">
       <label for="newRelease"></label>
@@ -2840,6 +2843,7 @@ contribute the most emotional music] <br>
 2006 Oforia - Inner Twist [generic but solidly made Israeli full on] <br>
 						</p>
 						<p>
+2006 VA [Discovalley Records] - The Dark Side of Goa [murky, often sloppy minimal old school darkpsy, Metallaxis/Terminator and Innersound are good] <br>
 2006 VA [Dharma Kshetra Records] - Nykto [largely forgettable/monotonous old school darkpsy w/ forest flavor, good tunes by Dominator, Para Halu and Atriohm] <br>
 2006 VA [Ektoplazm] - Lost in the Forests [unmastered 3 hours of dark forest psychedelic, amazing gems from Wizack Twizack and Silent Horror alongside some unprofessional, overly basic and sloppy tracks] <br>
 2006 VA [Geomagnetic.TV] - Civilysed Chaos [darkpsy] <br>
