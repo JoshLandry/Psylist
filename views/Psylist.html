@@ -7,6 +7,11 @@
   		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   		<script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 		<style>
+      table{
+        border: 1px solid black;
+        table-layout: fixed;
+        width: 800px;
+      }
 		</style>
 		<script>
 			$(function() {
@@ -29,26 +34,59 @@
     
     <p ng-bind="testText"></p>
 
-    Filter By: <input> </input>
+    Filter By: <input ng-model="searchText"></input>
 
-      <table data-ng-repeat="release in releases">
-        <tr>
-          <td ng-bind="release.year"> - </td>
-          <td ng-bind="release.artistName"> </td>
-          <td ng-bind="release.albumName"> </td>
-        </tr>
+      <table data-ng-repeat="release in releases | filter:searchText">
 
         <tr>
-          <td> <form data-ng-if="release.editing">
-              <label for="release{{release._id}}"></label>
-              Edit artist name: <input type="text" id="release{{release._id}}" data-ng-model="release.artistName"> <br>
-              Edit title: <input type="text" id="release{{release._id}}" data-ng-model="release.albumName">
-              <button type="submit" data-ng-click="save(release)">Save info</button>
-              <button type="button" data-ng-click="editToggle(release)">Cancel</button>
-          </form> </td>
-          <td> <button data-ng-click="editToggle(release)" data-ng-if="!release.editing">Expand / Edit</button> </td>
-          <td> <button data-ng-click="remove(release)">Delete release</button> </td> <br>
+          <td> <span ng-bind="release.year"> </span> </td>
+          <td>: <span ng-bind="release.artistName"> </span> </td>
+          <td>- <span ng-bind="release.albumName"> </span> </td>
         </tr>
+
+        <tr>  
+          <td> <button data-ng-click="remove(release)">Delete</button> </td>
+          <td> <button data-ng-click="editToggle(release)" data-ng-if="!release.editing">Edit</button> </td>
+          <td> <button data-ng-click="expandToggle(release)" data-ng-if="!release.expanded">Expand</button> </td>
+        </tr>
+
+        <tr data-ng-if="release.expanded">
+          <td>Label: <span ng-bind="release.recordLabel"></span></td>
+          <td>Genre: <span ng-bind="release.genre"></span> </td>
+          <td>VA?: <span ng-bind="release.isVA"></span> </td>
+        </tr>
+
+        <tr data-ng-if="release.expanded">
+          <td>Rating: <span ng-bind="release.rating"></span></td>
+          <td> <button type="button" data-ng-click="expandToggle(release)">Show Less</button> </td>
+        </tr>
+
+        <tr data-ng-if="release.expanded">
+          <td> Review: <span ng-bind="release.review"> </span> </td>
+        </tr>
+
+        <tr data-ng-if="release.editing">
+          <td>Artist: <input type="text" id="release{{release._id}}" data-ng-model="release.artistName"></td>
+          <td>Title: <input type="text" id="release{{release._id}}" data-ng-model="release.albumName"></td>
+          <td>Year: <input type="text" id="release{{release._id}}" data-ng-model="release.year"></td>
+        </tr>
+
+        <tr data-ng-if="release.editing">
+          <td>Rating: <input type="text" id="release{{release._id}}" data-ng-model="release.rating"></td>
+          <td>Genre: <input type="text" id="release{{release._id}}" data-ng-model="release.genre"></td>
+          <td>VA?: <input type="text" id="release{{release._id}}" data-ng-model="release.isVA"></td>
+        </tr>
+
+        <tr data-ng-if="release.editing">
+          <td>Label: <input type="text" id="release{{release._id}}" data-ng-model="release.recordLabel"></td>
+          <td> <button type="submit" data-ng-click="save(release)">Save info</button></td>
+          <td> <button type="button" data-ng-click="editToggle(release)">Cancel</button></td>
+        </tr>
+
+        <tr data-ng-if="release.editing">
+          <td> Review: <input type="text" id="release{{release._id}}" data-ng-model="release.review"></input> </td>
+        </tr>
+
       </table>
 
     <form class="input form">

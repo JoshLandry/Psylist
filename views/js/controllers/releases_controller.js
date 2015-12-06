@@ -59,6 +59,16 @@ module.exports = function(app) {
       }
     };
 
+    $scope.expandToggle = function(release) {
+      if(release.expanded) {
+
+        release.expanded = false;
+      } else {
+
+        release.expanded = true;
+      }
+    };
+
     $scope.remove = function(release) {
       $http({
         method: 'DELETE',
