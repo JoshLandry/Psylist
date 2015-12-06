@@ -4,7 +4,7 @@
 
     Filter By: <input ng-model="searchText"></input>
 
-      <table data-ng-repeat="release in releases | filter:searchText">
+      <table data-ng-repeat="release in releases | filter:searchText | orderBy: '-year' ">
 
         <tr>
           <td> <span ng-bind="release.year"> </span> </td>
