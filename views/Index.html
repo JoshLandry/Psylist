@@ -34,10 +34,11 @@
       <section class="user_list">
 
         <h1> Existing Users: </h1>
-        
-        <ul data-ng-repeat="user in users">
-          <li ng-bind="user.username"></li>
-        </ul>
+
+        <table data-ng-repeat="user in users">
+          <td> Name: <span ng-bind="user.username"> </span> </td>
+          <td> <button data-ng-click="remove(user)"> Delete User </button> </td>
+        </table>
       </section>
 
     </div>
