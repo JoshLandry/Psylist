@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Psylist</title>
+ 		<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  		<script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+		<style>
+      table{
+        border: 1px solid black;
+        table-layout: fixed;
+        width: 800px;
+      }
+		</style>
+	</head>
+	<body data-ng-app="psylistApp">
+  <main>
+    <div data-ng-controller="usersController" data-ng-init="getAll()">
+
+      <section class="new_submission">
+
+        <h1> Create a new user: </h1>
+        
+        <form class="input form">
+          <label for="newUser"></label>
+          User Name: <input data-ng-model="newUser.username"></input> <br>
+          Password: <input data-ng-model="newUser.basic.password"></input> <br>
+          <input type="submit" data-ng-click="create(newUser)"></button>
+        </form>
+
+      </section>
+
+      <section class="user_list">
+
+        <h1> Existing Users: </h1>
+        
+        <ul data-ng-repeat="user in users">
+          <li ng-bind="user.username"></li>
+        </ul>
+      </section>
+
+    </div>
+    <div data-ng-controller="releasesController" data-ng-init="getAll()">
+      <h1> Psylist App </h1>
+
+      <section class="new_submission">
+
+      <h1> Submit a new release: </h1>
+      <form class="input form">
+        <label for="newRelease"></label>
+        Album Name: <input data-ng-model="newRelease.albumName"></input> Artist: <input data-ng-model="newRelease.artistName"></input> <br>
+        Year: <input data-ng-model="newRelease.year"></input> Record Label: <input data-ng-model="newRelease.recordLabel"></input> <br>
+        Album or VA?: <input data-ng-model="newRelease.isVA"></input> Genre: <input data-ng-model="newRelease.genre"></input> <br>
+        Rating: <input data-ng-model="newRelease.rating"></input> Review: <input data-ng-model="newRelease.review"></input> <br>
+        <input type="submit" data-ng-click="create(newRelease)"></button>
+      </form>
+
+      </section>
+
+      <a href="http://localhost:5000/#/angular">Angular Psylist</a> 
+      <a href="http://localhost:5000/#/original">Original Psylist</a> 
+      <a href="http://localhost:5000/#/">Rubric</a><br>
+      <section data-ng-view>
+      </section>
+
+      <script src="./bundle.js"></script>
+    </div>
+
+  </main>
+	</body>
+</html>

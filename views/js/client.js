@@ -7,6 +7,7 @@ var psylistApp = angular.module('psylistApp', ['ngRoute']);
 
 //controllers
 require('./controllers/releases_controller')(psylistApp);
+require('./controllers/users_controller')(psylistApp);
 
 psylistApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider
