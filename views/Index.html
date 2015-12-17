@@ -49,23 +49,30 @@
     <div data-ng-controller="releasesController" data-ng-init="getAll()">
 
       <section class="new_submission">
-
-      <h1> Submit a new release: </h1>
-      <form class="input form">
-        <label for="newRelease"></label>
-        Artist: <input data-ng-model="newRelease.artistName"></input> Album Name: <input data-ng-model="newRelease.albumName"></input> <br>
-        Year: <input data-ng-model="newRelease.year"></input> Record Label: <input data-ng-model="newRelease.recordLabel"></input> <br>
-        Album or VA?: <input data-ng-model="newRelease.isVA"></input> Genre: <input data-ng-model="newRelease.genre"></input> <br>
-        Rating: <input data-ng-model="newRelease.rating"></input> Review: <input data-ng-model="newRelease.review"></input> <br>
-        <input type="submit" data-ng-click="create(newRelease)"></button>
-      </form>
-
+        <h1> Submit a new release: </h1>
+        <form class="input form">
+          <label for="newRelease"></label>
+          Artist: <input data-ng-model="newRelease.artistName"></input> Album Name: <input data-ng-model="newRelease.albumName"></input> <br>
+          Year: <input data-ng-model="newRelease.year"></input> Record Label: <input data-ng-model="newRelease.recordLabel"></input> <br>
+          Album or VA?: <input data-ng-model="newRelease.isVA"></input> Genre: <input data-ng-model="newRelease.genre"></input> <br>
+          Rating: <input data-ng-model="newRelease.rating"></input> Review: <input data-ng-model="newRelease.review"></input> <br>
+          <input type="submit" data-ng-click="create(newRelease)"></button>
+        </form>
       </section>
 
       <a href="http://localhost:5000/#/angular">Angular Psylist</a> 
       <a href="http://localhost:5000/#/original">Original Psylist</a> 
-      <a href="http://localhost:5000/#/">Rubric</a><br>
+      <a href="http://localhost:5000/#/">Rubric</a>
       <section data-ng-view>
+      </section>
+
+      <br>
+
+      <section class="submittedtoday">
+        <button ng-click="saveToPC(releases)">Save List to File</button>
+        <div id="submissions">
+          <h3> Submitted Today: </h3>
+        </div>
       </section>
 
       <script src="./bundle.js"></script>
