@@ -1,0 +1,20 @@
+<ul class="reviews" >
+    {% for review in posts %}
+
+        <li>
+            <a class="header" href="{{ review.title }}">
+                <h3 class="entry">
+                    {{ review.entry|truncate(50, killwords=True)}}
+                </h3>
+                <span class="rating">
+                    {{ review.rating }}
+                </span>
+            </a>
+
+            <div class="info">
+                <br>
+                <p> no info </p>
+            </div>
+          </li>
+      {% endfor %}
+</ul>
